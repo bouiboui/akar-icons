@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const CreditCardAlt1 = ({
   color = 'currentColor',
@@ -25,9 +24,13 @@ const CreditCardAlt1 = ({
   );
 };
 
-CreditCardAlt1.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  CreditCardAlt1.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default CreditCardAlt1;

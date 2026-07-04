@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const ShareBox = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -21,9 +20,13 @@ const ShareBox = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-ShareBox.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  ShareBox.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default ShareBox;

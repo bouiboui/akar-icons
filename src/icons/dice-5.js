@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Dice5 = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -30,9 +29,13 @@ const Dice5 = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Dice5.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Dice5.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Dice5;

@@ -1,6 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import path from 'path';
 import copy from 'rollup-plugin-copy';
+import replace from '@rollup/plugin-replace';
 
 const resolveFile = function (filePath) {
   return path.join(__dirname, '..', filePath)
@@ -33,6 +34,10 @@ export default [{
         { src: resolveFile('src/icons.d.ts'), dest: resolveFile('dist/') }
       ]
     }),
+    replace({
+      preventAssignment: true,
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     babel(babelOptions),
   ],
 }, {
@@ -44,6 +49,10 @@ export default [{
   },
   external,
   plugins: [
+    replace({
+      preventAssignment: true,
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     babel(babelOptions),
   ],
 }];

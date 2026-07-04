@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const DotGridFill = ({
   color = 'currentColor',
@@ -24,9 +23,13 @@ const DotGridFill = ({
   );
 };
 
-DotGridFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  DotGridFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default DotGridFill;

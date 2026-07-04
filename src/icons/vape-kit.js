@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const VapeKit = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -26,9 +25,13 @@ const VapeKit = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-VapeKit.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  VapeKit.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default VapeKit;

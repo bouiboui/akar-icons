@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Search = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -20,9 +19,13 @@ const Search = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Search.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Search.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Search;

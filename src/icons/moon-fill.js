@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const MoonFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -17,9 +16,13 @@ const MoonFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-MoonFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  MoonFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default MoonFill;

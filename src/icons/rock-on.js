@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const RockOn = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -25,9 +24,13 @@ const RockOn = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-RockOn.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  RockOn.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default RockOn;

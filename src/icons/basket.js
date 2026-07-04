@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Basket = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -24,9 +23,13 @@ const Basket = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Basket.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Basket.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Basket;

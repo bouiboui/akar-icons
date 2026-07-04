@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const ArrowCounterClockwise = ({
   color = 'currentColor',
@@ -25,9 +24,13 @@ const ArrowCounterClockwise = ({
   );
 };
 
-ArrowCounterClockwise.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  ArrowCounterClockwise.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default ArrowCounterClockwise;

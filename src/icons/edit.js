@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Edit = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -21,9 +20,13 @@ const Edit = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Edit.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Edit.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Edit;

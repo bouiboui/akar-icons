@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const TwoLineHorizontal = ({
   color = 'currentColor',
@@ -24,9 +23,13 @@ const TwoLineHorizontal = ({
   );
 };
 
-TwoLineHorizontal.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  TwoLineHorizontal.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default TwoLineHorizontal;

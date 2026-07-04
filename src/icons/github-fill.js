@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const GithubFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -27,9 +26,13 @@ const GithubFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-GithubFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  GithubFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default GithubFill;

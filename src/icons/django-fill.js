@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const DjangoFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -22,9 +21,13 @@ const DjangoFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-DjangoFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  DjangoFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default DjangoFill;

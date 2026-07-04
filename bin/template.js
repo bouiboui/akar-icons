@@ -22,7 +22,6 @@ const getAttrs = (style) => {
 
 const getElementCode = (ComponentName, attrs, svgCode) => `
   import React from 'react';
-  import PropTypes from 'prop-types';
 
   const ${ComponentName} = ({ color = 'currentColor', size = '24', ...otherProps }) => {
     return (
@@ -32,12 +31,16 @@ const getElementCode = (ComponentName, attrs, svgCode) => `
     )
   };
 
-  ${ComponentName}.propTypes = {
-    color: PropTypes.string,
-    size: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
+  if (process.env.NODE_ENV !== 'production') {
+    const PropTypes = require('prop-types');
+
+    ${ComponentName}.propTypes = {
+      color: PropTypes.string,
+      size: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]),
+    }
   }
 
   export default ${ComponentName}

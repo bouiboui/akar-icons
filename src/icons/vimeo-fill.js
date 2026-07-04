@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const VimeoFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -16,9 +15,13 @@ const VimeoFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-VimeoFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  VimeoFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default VimeoFill;

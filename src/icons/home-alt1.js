@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const HomeAlt1 = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -21,9 +20,13 @@ const HomeAlt1 = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-HomeAlt1.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  HomeAlt1.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default HomeAlt1;

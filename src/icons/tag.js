@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Tag = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -21,9 +20,13 @@ const Tag = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Tag.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Tag.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Tag;

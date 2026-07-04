@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const CircleFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -16,9 +15,13 @@ const CircleFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-CircleFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  CircleFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default CircleFill;

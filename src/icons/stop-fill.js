@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const StopFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -20,9 +19,13 @@ const StopFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-StopFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  StopFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default StopFill;

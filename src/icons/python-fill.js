@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const PythonFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -24,9 +23,13 @@ const PythonFill = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-PythonFill.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  PythonFill.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default PythonFill;

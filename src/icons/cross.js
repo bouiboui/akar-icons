@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Cross = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -20,9 +19,13 @@ const Cross = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Cross.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Cross.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Cross;

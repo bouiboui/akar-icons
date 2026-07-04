@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const BatteryLow = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -22,9 +21,13 @@ const BatteryLow = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-BatteryLow.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  BatteryLow.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default BatteryLow;

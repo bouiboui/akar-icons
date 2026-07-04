@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Network = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   return (
@@ -23,9 +22,13 @@ const Network = ({ color = 'currentColor', size = '24', ...otherProps }) => {
   );
 };
 
-Network.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
+if (process.env.NODE_ENV !== 'production') {
+  const PropTypes = require('prop-types');
+
+  Network.propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+}
 
 export default Network;
