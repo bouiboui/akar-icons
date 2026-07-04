@@ -7,7 +7,17 @@ const resolveFile = function (filePath) {
   return path.join(__dirname, '..', filePath)
 }
 
-const babelOptions = {
+const esmBabelOptions = {
+  exclude: 'node_modules/**',
+  babelrc: false,
+  configFile: false,
+  babelHelpers: 'bundled',
+  presets: [
+    ['@babel/preset-react', { useSpread: true }],
+  ],
+};
+
+const cjsBabelOptions = {
   exclude: 'node_modules/**',
   babelHelpers: 'bundled',
   presets: [
@@ -38,7 +48,7 @@ export default [{
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    babel(babelOptions),
+    babel(esmBabelOptions),
   ],
 }, {
   input: 'src/icons.js',
@@ -53,6 +63,6 @@ export default [{
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    babel(babelOptions),
+    babel(cjsBabelOptions),
   ],
 }];
