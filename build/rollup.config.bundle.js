@@ -6,21 +6,44 @@ const resolveFile = function (filePath) {
   return path.join(__dirname, '..', filePath)
 }
 
-export default {
-  input: 'src/icons.js',
+const babelOptions = {
+  exclude: 'node_modules/**',
+  babelHelpers: 'bundled',
+  presets: [
+    ['@babel/preset-env', { modules: false }],
+    '@babel/preset-react',
+  ],
+};
+
+const external = ['react', 'prop-types'];
+const input = 'src/icons.js';
+
+export default [{
+  input,
   output: {
-    file: 'dist/index.js',
-    format: 'cjs',
+    dir: 'dist/esm',
+    format: 'esm',
+    preserveModules: true,
+    preserveModulesRoot: 'src',
   },
-  external: ['react', 'prop-types'],
+  external,
   plugins: [
     copy({
       targets: [
         { src: resolveFile('src/icons.d.ts'), dest: resolveFile('dist/') }
       ]
     }),
-    babel({
-      exclude: 'node_modules/**',
-    }),
+    babel(babelOptions),
   ],
-};
+}, {
+  input: 'src/icons.js',
+  output: {
+    file: 'dist/index.js',
+    format: 'cjs',
+    exports: 'named',
+  },
+  external,
+  plugins: [
+    babel(babelOptions),
+  ],
+}];

@@ -3,7 +3,9 @@
   "version": "1.9.31",
   "description": "A perfectly rounded icon library made for everyone.",
   "main": "dist/index.js",
+  "module": "dist/esm/icons.js",
   "typings": "dist/icons.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -30,7 +32,7 @@
   "scripts": {
     "fetch": "node bin/fetchSVG.js",
     "generate": "sudo rm -rf src/icons && node bin/build.js",
-    "build:bundle": "sudo rm -rf dist && node_modules/.bin/rollup --c ./build/rollup.config.bundle.js",
+    "build:bundle": "rm -rf dist && node_modules/.bin/rollup --c ./build/rollup.config.bundle.js",
     "dev": "rollup -w -c ./build/rollup.config.dev.js",
     "build": "rollup -c ./build/rollup.config.prod.js"
   },
